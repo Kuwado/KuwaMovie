@@ -7,9 +7,12 @@ import Banner from './components/Banner'
 function App() {
   return (
     <>
-      <div>
+      <div className='box-border m-0 bg-bgDark'>
         <Header />
-        <Banner />
+        <section className='pt-16 w-full'>
+          <Banner />
+
+        </section>
       </div>
     </>
   )
