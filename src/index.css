@@ -100,3 +100,19 @@ button:focus-visible {
 .header-item.active {
   @apply bg-extra
 }
+
+.react-multi-carousel-list button {
+  @apply bg-mainLight opacity-10
+}
+
+.react-multi-carousel-list button::before {
+  @apply text-textLight
+}
+
+.react-multi-carousel-list button:hover {
+  @apply bg-mainLight opacity-70
+}
+
+.react-multi-carousel-track {
+  @apply h-full
+}
