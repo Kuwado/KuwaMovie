@@ -22,7 +22,7 @@ const responsive = {
 };
 
 
-const MovieList = ({ title, movies }) => {
+const MediaSlide = ({ title, movies }) => {
   return (
     <div className='w-10/12 mx-auto my-4 movie-list'>
       <h2 className='uppercase font-bold text-3xl text-textDark border-b-4 border-extra w-fit pb-2'>{title}</h2>
@@ -45,4 +45,4 @@ const MovieList = ({ title, movies }) => {
   )
 }
 
-export default MovieList
+export default MediaSlide
