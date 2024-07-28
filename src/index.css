@@ -116,3 +116,11 @@ button:focus-visible {
 .react-multi-carousel-track {
   @apply h-full
 }
+
+.movie-list .react-multiple-carousel__arrow--left {
+  @apply left-4
+}
+
+.movie-list .react-multiple-carousel__arrow--right {
+  @apply right-4
+}

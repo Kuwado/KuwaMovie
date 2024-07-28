@@ -3,15 +3,15 @@ import { FaCaretRight } from 'react-icons/fa6';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const Banner = ({ movies, genreMovies, genreTVs }) => {
+const responsive = {
+    all: {
+        breakpoint: { max: 3000, min: 0 },
+        items: 1,
+        slidesToSlide: 1
+    }
+};
 
-    const responsive = {
-        all: {
-            breakpoint: { max: 3000, min: 0 },
-            items: 1,
-            slidesToSlide: 1
-        }
-    };
+const Banner = ({ movies, genreMovies, genreTVs }) => {
 
     return (
         <Carousel responsive={responsive} infinite={true} className='h-[700px]'>
@@ -36,9 +36,9 @@ const Banner = ({ movies, genreMovies, genreTVs }) => {
                                     ))}
                                 </div>
                                 <div>{movie.overview}</div>
-                                <a href="#" className='inline-flex items-center justify-center small-btn main-btn w-fit text-xl'>
-                                    <div><FaCaretRight /></div>
-                                    <p>Xem ngay</p>
+                                <a href="#" className='small-btn main-btn w-fit text-xl inline-flex items-center space-x-1'>
+                                    <FaCaretRight />
+                                    <span className='uppercase'>Xem ngay</span>
                                 </a>
                             </div>
                             <div className='w-1/2 flex items-center justify-center bg-cover'>

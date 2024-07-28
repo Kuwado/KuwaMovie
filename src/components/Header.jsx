@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-const Header = () => {
+const Header = ({ nav }) => {
 
     const [scrollHeader, setScrollHeader] = useState(false);
 
-    useEffect (() => {
+    useEffect(() => {
 
         const handleScrollHeader = () => {
             setScrollHeader(window.scrollY >= 64);
@@ -23,9 +23,9 @@ const Header = () => {
             <div className="flex items-center space-x-5">
                 <h1 className="text-[32px] text-extra font-bold"><span className="text-textDark">Kuwa</span>Movie</h1>
                 <div className="text-mainLight text-base flex space-x-3">
-                    <a href="#" className="header-item active" >Trang chủ</a>
-                    <a href="#" className="header-item">Phim lẻ</a>
-                    <a href="#" className="header-item">Phim bộ</a>
+                    <a href="#" className={`header-item ${nav === 'home' ? 'active' : ''}`}>Trang chủ</a>
+                    <a href="#" className={`header-item ${nav === 'movie' ? 'active' : ''}`}>Phim lẻ</a>
+                    <a href="#" className={`header-item ${nav === 'tv' ? 'active' : ''}`}>Phim bộ</a>
                 </div>
             </div>
             <div className="flex gap-5">
