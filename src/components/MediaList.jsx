@@ -1,39 +1,55 @@
-import { useEffect, useState, useLayoutEffect } from "react";
-import useFetchMovies from '../hooks/useFetchMovies';
+import { useEffect, useState, useMemo } from "react";
 import { FaCaretRight } from "react-icons/fa";
 
 const MediaList = ({ type }) => {
     const [isPopular, setIsPopular] = useState(true);
     const [page, setPage] = useState(1);
     const [medias, setMedias] = useState([]);
-    const url = isPopular
-        ? `https://api.themoviedb.org/3/${type}/popular?language=vi&page=${page}`
-        : `https://api.themoviedb.org/3/${type}/top_rated?language=vi&page=${page}`;
 
-    const newMedias = useFetchMovies(url);
+    const url = useMemo(() => (
+        `https://api.themoviedb.org/3/${type}/${isPopular ? 'popular' : 'top_rated'}?language=vi&page=${page}`
+    ), [isPopular, page, type]);
 
     const title = type === 'movie' ? 'Phim lẻ' : 'Phim bộ';
 
+    console.log(page)
+
     const handleClick = () => {
+        console.log('click')
+        setMedias([]);
+        setPage(1);
         setIsPopular(!isPopular);
+        console.log('click-end')
     };
 
     const morePage = () => {
-        setPage(prevPage => prevPage + 1);
+        setPage(page + 1);
     };
 
-    useLayoutEffect(() => {
-        setPage(1);
-        // setMedias([]);
-    }, [isPopular]);
-
     useEffect(() => {
-        if (page != 1) {
-            setMedias(prevMedias => [...prevMedias, ...newMedias]);
-        } else {
-            setMedias(newMedias);
-        }
-    }, [newMedias]);
+        const fetchMovies = async () => {
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                page === 1 ? setMedias(result.results) : setMedias(prevMedias => [...prevMedias, ...result.results])
+                console.log('fetch')
+            } catch (error) {
+                setError(error);
+            }
+        };
+
+        fetchMovies();
+    }, [isPopular, page]);
+
+    console.log('hehe')
 
     return (
         <div className="w-10/12 mx-auto mt-4">

@@ -19,7 +19,6 @@ const useFetchGenres = (type) => {
                 const response = await fetch(url, options);
                 const result = await response.json();
                 setGenres(result.genres);
-                console.log(result)
             } catch (error) {
                 setError(error);
             };

@@ -20,7 +20,6 @@ const useFetchMovies = (url) => {
                 const response = await fetch(urll, options);
                 const result = await response.json();
                 setData(result.results);
-                console.log('f', result.results)
             } catch (error) {
                 setError(error);
             }
