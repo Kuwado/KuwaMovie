@@ -20,29 +20,29 @@ const responsive = {
     },
   };
 
-const MediaDetail = ({ movie, actors, type }) => {
-    const genres = movie.genres || [];
+const MediaDetail = ({ media, actors, type }) => {
+    const genres = media.genres || [];
     const casts = actors.cast || [];
 
     return (
-        <div className='w-full h-[120vh] relative bg-gradient-to-t from-mainDark via-mainDark to-textDark-0 flex items-end pb-4'>
+        <div className='w-full h-[120vh] relative bg-gradient-to-t from-mainDark via-mainDark to-textDark-0 flex items-end pb-5'>
             <div className='relative z-10 h-fit w-10/12 mx-auto flex items-center gap-10'>
                 <div className='w-[40%]'>
                     <img
-                        src={`${import.meta.env.VITE_IMG_URL}${movie.poster_path})`}
+                        src={`${import.meta.env.VITE_IMG_URL}${media.poster_path})`}
                         alt="avatar"
                         className='w-full object-cover'
                     />
                 </div>
                 <div className='w-[60%] flex flex-col justify-center gap-4'>
-                    <h2 className='text-[60px] font-bold text-wrap break-words'>{movie.title || movie.original_title || movie.original_name}</h2>
+                    <h2 className='text-[60px] font-bold text-wrap break-words'>{media.title || media.original_title || media.original_name}</h2>
                     <div className='flex space-x-3'>
                         <span className='uppercase py-1 px-2 rounded-md border-extra border-2'>{type}</span>
                         {genres.length > 0 && genres.map(genre => (
                             <span key={genre.id} className='py-1 px-2 rounded-md bg-extra text-textDark'>{genre.name}</span>
                         ))}
                     </div>
-                    <div>{movie.overview || movie.tagline}</div>
+                    <div>{media.overview || media.tagline}</div>
                     <button className='small-btn main-btn w-fit text-xl inline-flex items-center space-x-1'>
                         <FaCaretRight />
                         <span className='uppercase'>Xem ngay</span>

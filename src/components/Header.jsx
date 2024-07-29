@@ -19,7 +19,7 @@ const Header = () => {
     }, [location]);
 
     return (
-        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-20 ${scrollHeader ? 'bg-mainDark' : 'bg-transparent'}`}>
+        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-20 ${scrollHeader ? 'bg-bgDark' : 'bg-transparent'}`}>
             <div className="flex items-center space-x-5">
                 <h1 className="text-[32px] text-extra font-bold"><span className="text-textDark">Kuwa</span>Movie</h1>
                 <div className="text-mainLight text-base flex space-x-3">

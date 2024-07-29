@@ -124,3 +124,11 @@ button:focus-visible {
 .movie-list .react-multiple-carousel__arrow--right {
   @apply right-4
 }
+
+.react-multi-carousel-dot-list button {
+  @apply h-[15px] w-[15px] opacity-20
+}
+
+.react-multi-carousel-dot--active button {
+  @apply opacity-100
+}

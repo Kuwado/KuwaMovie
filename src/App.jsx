@@ -4,7 +4,7 @@ import KuwaMovieRouter from "./routes/KuwaMovieRouter";
 
 function App() {
   return (
-    <div className='box-border m-0 bg-bgDark'>
+    <div className='box-border m-0 bg-mainDark'>
       <Header />
       <KuwaMovieRouter />
     </div>
