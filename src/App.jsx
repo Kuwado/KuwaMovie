@@ -1,18 +1,14 @@
-// App.js
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
 import HomePage from './pages/HomePage';
-import MediaPage from './pages/MediaPage';
 
 function App() {
-
-
   return (
-    <>
-      <div className='box-border m-0 bg-bgDark'>
+      <div>
+        <Header nav={'home'} />
         {/* <HomePage /> */}
-        <MediaPage type={'movie'} />
       </div>
-    </>
   );
 }
 

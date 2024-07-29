@@ -47,7 +47,7 @@ const MediaList = ({ type }) => {
         };
 
         fetchMovies();
-    }, [isPopular, page]);
+    }, [isPopular, page, type]);
 
     console.log('hehe')
 

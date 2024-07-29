@@ -15,7 +15,7 @@ const HomePage = () => {
 
     return (
         <>
-            <Header nav={'home'} />
+            {/* <Header nav={'home'} /> */}
             <section className='w-full'>
                 <Banner movies={bannerData} genreMovies={genreMovies} genreTVs={genreTVs} />
                 <MediaSlide title={'Phim lẻ phổ biến'} movies={popularMovies} />
