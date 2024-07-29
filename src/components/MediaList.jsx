@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { FaCaretRight } from "react-icons/fa";
+import MediaItem from "./MediaItem";
 
 const MediaList = ({ type }) => {
     const [isPopular, setIsPopular] = useState(true);
@@ -12,14 +13,10 @@ const MediaList = ({ type }) => {
 
     const title = type === 'movie' ? 'Phim lẻ' : 'Phim bộ';
 
-    console.log(page)
-
     const handleClick = () => {
-        console.log('click')
         setMedias([]);
         setPage(1);
         setIsPopular(!isPopular);
-        console.log('click-end')
     };
 
     const morePage = () => {
@@ -48,8 +45,6 @@ const MediaList = ({ type }) => {
         fetchMovies();
     }, [isPopular, page, type]);
 
-    console.log('hehe')
-
     return (
         <div className="w-10/12 mx-auto mt-4">
             <div className="flex justify-between mb-2">
@@ -74,19 +69,7 @@ const MediaList = ({ type }) => {
             <div className="grid auto-rows-auto grid-cols-5 gap-2">
                 {medias && medias.length > 0 && medias.map((media) => (
                     <div key={media.id} className='group w-fit h-fit relative m-2'>
-                        <img
-                            src={`${import.meta.env.VITE_IMG_URL}${media.poster_path}`}
-                            alt={media.title || media.original_title || media.original_name}
-                            className="w-full h-full object-cover"
-                        />
-                        <div className='absolute bottom-0 left-0 w-full h-full p-3 group-hover:opacity-100 opacity-0 transition-opacity ease-in flex items-end text-textDark text-xl bg-gradient-to-t from-mainDark to-mainLight-[0]'>
-                            {media.title || media.original_title || media.original_name}
-                        </div>
-                        <div className='absolute bottom-0 left-0 w-full h-full flex items-center justify-center group-hover:opacity-100 opacity-0 transition-opacity ease-in cursor-pointer'>
-                            <div className='rounded-[50%] p-2 bg-extra text-textDark text-3xl hover:bg-textDark hover:text-extra'>
-                                <FaCaretRight />
-                            </div>
-                        </div>
+                        <MediaItem media={media} type={type} />
                     </div>
                 ))}
                 {medias && medias.length === 0 && <p>No media found</p>}

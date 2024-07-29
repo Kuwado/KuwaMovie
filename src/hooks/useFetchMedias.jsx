@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useFetchMovies = (url) => {
+const useFetchMedias = (url) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        const fetchMedias = async () => {
             const options = {
                 method: 'GET',
                 headers: {
@@ -25,10 +25,10 @@ const useFetchMovies = (url) => {
             }
         };
 
-        fetchMovies();
+        fetchMedias();
     }, [url]);
 
     return data;
 };
 
-export default useFetchMovies;
+export default useFetchMedias;

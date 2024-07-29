@@ -1,5 +1,5 @@
 import Banner from '../components/Banner';
-import useFetchMovies from '../hooks/useFetchMovies';
+import useFetchMovies from '../hooks/useFetchMedias';
 import useFetchGenres from '../hooks/useFetchGenres';
 import MediaList from '../components/MediaList';
 
@@ -10,7 +10,7 @@ const MediaPage = ({ type }) => {
     return (
         <>
             <section className='w-full'>
-                <Banner movies={bannerData} genreMovies={genreMovies} genreTVs={genreTVs} />
+                <Banner medias={bannerData} genreMovies={genreMovies} genreTVs={genreTVs} />
                 <MediaList type={type} />
             </section>
         </>

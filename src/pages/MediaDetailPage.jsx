@@ -30,22 +30,22 @@ const MediaDetailPage = ({ type }) => {
             try {
                 const response = await fetch(url, options);
                 const movs = await response.json();
-                console.log(movs);
+                // console.log(movs);
                 setMedia(movs);
 
                 const response2 = await fetch(urlActors, options);
                 const acts = await response2.json();
-                console.log(acts);
+                // console.log(acts);
                 setActors(acts);
 
                 const response3 = await fetch(urlVideos, options);
                 const vids = await response3.json();
-                console.log(vids);
+                // console.log(vids);
                 setVideos(vids.results.length > 5 ? vids.results.slice(0, 5) : vids.results);
                 
                 const response4 = await fetch(urlImages, options);
                 const imgs = await response4.json();
-                console.log(imgs);
+                // console.log(imgs);
                 setImages(imgs.backdrops.length > 10? imgs.backdrops.slice(0, 10) : imgs.backdrops);
 
             } catch (error) {
