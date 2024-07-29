@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { FaCaretRight } from 'react-icons/fa6';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
 
 const responsive = {
     all: {
@@ -36,10 +37,10 @@ const Banner = ({ movies, genreMovies, genreTVs }) => {
                                     ))}
                                 </div>
                                 <div>{movie.overview}</div>
-                                <a href="#" className='small-btn main-btn w-fit text-xl inline-flex items-center space-x-1'>
+                                <Link to={`/${movie.media_type}/${movie.id}`} className='small-btn main-btn w-fit text-xl inline-flex items-center space-x-1'>
                                     <FaCaretRight />
                                     <span className='uppercase'>Xem ngay</span>
-                                </a>
+                                </Link>
                             </div>
                             <div className='w-1/2 flex items-center justify-center bg-cover'>
                                 <img src={`${import.meta.env.VITE_IMG_URL}${movie.poster_path}`} alt="avatar" 

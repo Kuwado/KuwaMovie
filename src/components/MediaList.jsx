@@ -40,7 +40,6 @@ const MediaList = ({ type }) => {
                 const response = await fetch(url, options);
                 const result = await response.json();
                 page === 1 ? setMedias(result.results) : setMedias(prevMedias => [...prevMedias, ...result.results])
-                console.log('fetch')
             } catch (error) {
                 setError(error);
             }

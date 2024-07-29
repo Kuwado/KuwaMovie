@@ -1,4 +1,3 @@
-import Header from '../components/Header'
 import Banner from '../components/Banner';
 import useFetchMovies from '../hooks/useFetchMovies';
 import useFetchGenres from '../hooks/useFetchGenres';
@@ -15,7 +14,6 @@ const HomePage = () => {
 
     return (
         <>
-            {/* <Header nav={'home'} /> */}
             <section className='w-full'>
                 <Banner movies={bannerData} genreMovies={genreMovies} genreTVs={genreTVs} />
                 <MediaSlide title={'Phim lẻ phổ biến'} movies={popularMovies} />

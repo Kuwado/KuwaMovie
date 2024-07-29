@@ -1,8 +1,8 @@
-import Header from '../components/Header';
 import Banner from '../components/Banner';
 import useFetchMovies from '../hooks/useFetchMovies';
 import useFetchGenres from '../hooks/useFetchGenres';
 import MediaList from '../components/MediaList';
+
 const MediaPage = ({ type }) => {
     const genreMovies = useFetchGenres('movie');
     const genreTVs = useFetchGenres('tv');

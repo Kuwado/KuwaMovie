@@ -1,14 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
-import HomePage from './pages/HomePage';
+import KuwaMovieRouter from "./routes/KuwaMovieRouter";
 
 function App() {
   return (
-      <div>
-        <Header nav={'home'} />
-        {/* <HomePage /> */}
-      </div>
+    <div className='box-border m-0 bg-bgDark'>
+      <Header />
+      <KuwaMovieRouter />
+    </div>
   );
 }
 
