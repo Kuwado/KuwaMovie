@@ -24,6 +24,15 @@ export default {
         'bgGradient': 'linear-gradient(to right, black, rgba(0, 0, 0, 0)), linear-gradient(to top, black, rgba(0, 0, 0, 0))',
       }
     },
+
+    screens: {
+      'mb': '0px', // mobile
+      'mt': '480px', // 480 - 768 minitablet
+      'tl': '768px',  // 769 - 1024 tablet
+      'lt': '1024px', // laptop
+      'dt': '1280px', //desktop
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   plugins: [],
 }
