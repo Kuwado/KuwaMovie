@@ -1,11 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
-import { FaMagnifyingGlass, FaBars } from "react-icons/fa6";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { FaMagnifyingGlass, FaBars, FaUser } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 
 
 const Header = () => {
     const [scrollHeader, setScrollHeader] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef();
+    const overlayRef = useRef();
     const location = useLocation();
+
     const handleScrollHeader = useCallback(() => {
         setScrollHeader(window.scrollY >= 64);
     }, []);
@@ -19,10 +23,40 @@ const Header = () => {
         window.scrollTo(0, 0);
     }, [location]);
 
+
+    const handleMenuToggle = () => {
+        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
+    };
+
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setMenuOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (menuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuOpen]);
+
     return (
-        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-50 ${scrollHeader ? 'bg-bgDark' : 'bg-transparent'}`}>
-            <button className="text-xl hover:text-extra hidden" id="header-button"><FaBars /></button>
-            <div className="flex items-center space-x-5" id="header-bar">
+        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-50 transition-colors duration-300 ${scrollHeader ? 'bg-bgDark' : 'bg-transparent'}`}>
+            <div className={`absolute top-0 left-0 right-0 h-[100vh] z-60 bg-mainDark/30 ${menuOpen ? 'block' : 'hidden'}`} ref={overlayRef}></div>
+            <button className="lt:hidden mb:flex text-xl hover:text-extra" onClick={handleMenuToggle}><FaBars /></button>
+            <div ref={menuRef} className={`lt:hidden mb:flex flex-col items-center h-screen space-y-5 p-5 absolute z-90 top-0 bg-bgDark transition-all ease-in-out duration-300 ${menuOpen ? 'left-0' : '-left-full'}`}>
+                <h1 className="text-[32px] text-extra font-bold"><span className="text-textDark">Kuwa</span>Movie</h1>
+                <Link to={'/'} className={`header-item ${location.pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
+                <Link to={'/movies'} className={`header-item ${location.pathname === '/movies' ? 'active' : ''}`}>Phim lẻ</Link>
+                <Link to={'/tvs'} className={`header-item ${location.pathname === '/tvs' ? 'active' : ''}`}>Phim bộ</Link>
+            </div>
+
+            <div className="lt:flex mb:hidden items-center space-x-5" id="header-bar">
                 <h1 className="text-[32px] text-extra font-bold"><span className="text-textDark">Kuwa</span>Movie</h1>
                 <div className="flex space-x-3" id="header-bar-content">
                     <Link to={'/'} className={`header-item ${location.pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
@@ -30,13 +64,16 @@ const Header = () => {
                     <Link to={'/tvs'} className={`header-item ${location.pathname === '/tvs' ? 'active' : ''}`}>Phim bộ</Link>
                 </div>
             </div>
+
             <div className="flex gap-5">
                 <div className="px-2 py-1 rounded-tl-xl rounded-br-xl border-solid border-textDark border space-x-2 flex items-center">
                     <input className="bg-transparent border-none outline-none p-1" type="text" placeholder="Bạn muốn tìm gì?" />
                     <button className="text-xl hover:text-extra"><FaMagnifyingGlass /></button>
                 </div>
-                <a href="" className="small-btn main-btn">Đăng nhập</a>
+                <a href="" className="lt:flex mb:hidden small-btn main-btn">Đăng nhập</a>
             </div>
+
+            <button className="lt:hidden mb:flex text-xl hover:text-extra"><FaUser /></button>
         </div>
     )
 }

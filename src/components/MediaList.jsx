@@ -1,5 +1,4 @@
 import { useEffect, useState, useMemo } from "react";
-import { FaCaretRight } from "react-icons/fa";
 import MediaItem from "./MediaItem";
 
 const MediaList = ({ type }) => {
