@@ -47,17 +47,17 @@ const MediaList = ({ type }) => {
     return (
         <div className="w-10/12 mx-auto mt-4">
             <div className="flex justify-between mb-2">
-                <h2 className='uppercase font-bold text-3xl text-textDark border-b-4 border-extra w-fit pb-2'>{title}</h2>
-                <div className="flex text-textDark text-xl">
+                <h2 className='lt:text-3xl mb:text-2xl uppercase font-bold border-b-4 border-extra w-fit pb-2'>{title}</h2>
+                <div className="flex">
                     <button
-                        className={`py-2 px-4 rounded-tl-xl rounded-bl-xl border-2 border-white ${isPopular ? 'bg-extra' : ''}`}
+                        className={`py-2 px-4 rounded-tl-xl rounded-bl-xl border-2 border-white ${isPopular ? 'bg-extra font-bold' : ''}`}
                         onClick={handleClick}
                         disabled={isPopular}
                     >
                         Phổ biến
                     </button>
                     <button
-                        className={`py-2 px-4 rounded-tr-xl rounded-br-xl border-2 border-white ${!isPopular ? 'bg-extra' : ''}`}
+                        className={`py-2 px-4 rounded-tr-xl rounded-br-xl border-2 border-white ${!isPopular ? 'bg-extra font-bold' : ''}`}
                         onClick={handleClick}
                         disabled={!isPopular}
                     >
@@ -65,17 +65,17 @@ const MediaList = ({ type }) => {
                     </button>
                 </div>
             </div>
-            <div className="grid auto-rows-auto grid-cols-5 gap-2">
-                {medias && medias.length > 0 && medias.map((media) => (
-                    <div key={media.id} className='group w-fit h-fit relative m-2'>
+            <div className="grid auto-rows-auto mb:grid-cols-2 mt:grid-cols-3 tl:grid-cols-4 dt:grid-cols-5 gap-2">
+                {medias && medias.length > 0 && medias.map((media, index) => (
+                    <div key={index} className='group w-fit h-fit relative m-2'>
                         <MediaItem media={media} type={type} />
                     </div>
                 ))}
                 {medias && medias.length === 0 && <p>No media found</p>}
             </div>
             <div className="flex justify-center">
-                <button onClick={morePage} className="my-4 mx-auto py-2 px-4 bg-extra text-textDark rounded-tl-xl rounded-br-xl items-center">
-                    Load More
+                <button onClick={morePage} className="my-4 mx-auto py-2 px-4 bg-extra rounded-tl-xl rounded-br-xl items-center">
+                    Xem thêm
                 </button>
             </div>
         </div>

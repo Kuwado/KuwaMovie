@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import MediaDetail from '../components/MediaDetail';
 import MediaVideoSlide from '../components/MediaVideoSlide';
 import MediaImages from '../components/MediaImages';
+import MediaSlide from '../components/MediaSlide';
 
 const MediaDetailPage = ({ type }) => {
     const { id } = useParams();
@@ -11,6 +12,7 @@ const MediaDetailPage = ({ type }) => {
     const [actors, setActors] = useState([]);
     const [videos, setVideos] = useState([]);
     const [images, setImages] = useState([]);
+    const [sameMedias, setSameMedias] = useState([]);
 
     useEffect(() => {
         const fetchMedias = async () => {
@@ -26,6 +28,7 @@ const MediaDetailPage = ({ type }) => {
             const urlActors = `https://api.themoviedb.org/3/${type}/${id}/credits?language=vi`;
             const urlVideos = `https://api.themoviedb.org/3/${type}/${id}/videos?language=en-US`;
             const urlImages = `https://api.themoviedb.org/3/${type}/${id}/images`;
+            const urlSameMedias = `https://api.themoviedb.org/3/${type}/${id}/recommendations?language=vi&page=1`;
 
             try {
                 const response = await fetch(url, options);
@@ -48,6 +51,11 @@ const MediaDetailPage = ({ type }) => {
                 // console.log(imgs);
                 setImages(imgs.backdrops.length > 10? imgs.backdrops.slice(0, 10) : imgs.backdrops);
 
+                const response5 = await fetch(urlSameMedias, options);
+                const sms = await response5.json();
+                console.log(sms.results);
+                setSameMedias(sms.results);
+
             } catch (error) {
                 setError(error);
             }
@@ -64,10 +72,9 @@ const MediaDetailPage = ({ type }) => {
                 <MediaDetail media={media} actors={actors} type={type} />
                 <MediaVideoSlide videos={videos} />
                 <MediaImages images={images} />
-
+                <MediaSlide title={'Phim tương tự'} medias={sameMedias} type={type} />
             </div>
         </>
-
     )
 }
 

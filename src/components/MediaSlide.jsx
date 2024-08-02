@@ -3,39 +3,43 @@ import 'react-multi-carousel/lib/styles.css';
 import MediaItem from './MediaItem';
 
 const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 10,
-  },
   desktop: {
-    breakpoint: { max: 3000, min: 1200 },
+    breakpoint: { max: 4000, min: 1280 },
     items: 5,
   },
+  laptop: {
+    breakpoint: { max: 1280, min: 1024 },
+    items: 4,
+  },
   tablet: {
-    breakpoint: { max: 1200, min: 600 },
+    breakpoint: { max: 1024, min: 768 },
+    items: 4,
+  },
+  minitablet: {
+    breakpoint: { max: 768, min: 480 },
     items: 3,
   },
   mobile: {
-    breakpoint: { max: 600, min: 0 },
+    breakpoint: { max: 480, min: 0 },
     items: 2,
   },
 };
 
-
 const MediaSlide = ({ title, medias, type }) => {
   return (
-    <div className='w-10/12 mx-auto my-4 media-list'>
-      <h2 className='uppercase font-bold text-3xl text-textDark border-b-4 border-extra w-fit pb-2'>{title}</h2>
-      <Carousel responsive={responsive} infinite={true}>
-        {medias.length > 0 && medias.map((media) => (
-          <div key={media.id} className='group w-fit h-fit relative m-2'>
-            <MediaItem media={media} type={type} />
-          </div>
-        ))}
-      </Carousel>
-
-
+    <div className='w-full bg-mainDark pb-10'>
+      <div className='w-10/12 mx-auto space-y-3'>
+        <h2 className='lt:text-3xl mb:text-2xl uppercase font-bold text-3xl border-b-4 border-extra w-fit pb-2'>{title}</h2>
+        <Carousel responsive={responsive} infinite={false} removeArrowOnDeviceType={["tablet", "minitablet", "mobile"]}>
+          {medias.length > 0 && medias.map((media) => (
+            <div key={media.id} className='group w-fit h-fit relative m-2'>
+              <MediaItem media={media} type={type} />
+            </div>
+          ))}
+        </Carousel>
+      </div>
     </div>
+
   )
 }
 
