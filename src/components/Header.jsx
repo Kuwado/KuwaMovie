@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
 import { FaMagnifyingGlass, FaBars, FaUser } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
-
+import { MenuContext } from "../context/MenuContext";
 
 const Header = () => {
     const [scrollHeader, setScrollHeader] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
+    const { menuOpen, toggleMenu } = useContext(MenuContext);
     const menuRef = useRef();
     const overlayRef = useRef();
     const location = useLocation();
@@ -21,16 +21,14 @@ const Header = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (menuOpen) {
+            toggleMenu();
+        }
     }, [location]);
-
-
-    const handleMenuToggle = () => {
-        setMenuOpen((prevMenuOpen) => !prevMenuOpen);
-    };
 
     const handleClickOutside = (event) => {
         if (menuRef.current && !menuRef.current.contains(event.target)) {
-            setMenuOpen(false);
+            toggleMenu();
         }
     };
 
@@ -48,7 +46,7 @@ const Header = () => {
     return (
         <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-50 transition-colors duration-300 ${scrollHeader ? 'bg-bgDark' : 'bg-transparent'}`}>
             <div className={`absolute top-0 left-0 right-0 h-[100vh] z-60 bg-mainDark/30 ${menuOpen ? 'block' : 'hidden'}`} ref={overlayRef}></div>
-            <button className="lt:hidden mb:flex text-xl hover:text-extra" onClick={handleMenuToggle}><FaBars /></button>
+            <button className="lt:hidden mb:flex text-xl hover:text-extra" onClick={toggleMenu}><FaBars /></button>
             <div ref={menuRef} className={`lt:hidden mb:flex flex-col items-center h-screen space-y-5 p-5 absolute z-90 top-0 bg-bgDark transition-all ease-in-out duration-300 ${menuOpen ? 'left-0' : '-left-full'}`}>
                 <h1 className="text-[32px] text-extra font-bold"><span className="text-textDark">Kuwa</span>Movie</h1>
                 <Link to={'/'} className={`header-item ${location.pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
@@ -75,7 +73,7 @@ const Header = () => {
 
             <button className="lt:hidden mb:flex text-xl hover:text-extra"><FaUser /></button>
         </div>
-    )
+    );
 }
 
 export default Header;

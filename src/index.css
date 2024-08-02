@@ -48,6 +48,10 @@
   @apply h-full
 }
 
+.react-multiple-carousel__arrow {
+  @apply z-40
+}
+
 .movie-list .react-multiple-carousel__arrow--left {
   @apply left-4
 }
@@ -63,41 +67,3 @@
 .react-multi-carousel-dot--active button {
   @apply opacity-100
 }
-
-/* ----------------------------------------------- Responsive --------------------------------------------------*/
-/* Điện thoại di động (dưới 480px) */
-/* @media only screen and (max-width: 480px) {
-  #header-button {
-    @apply block relative
-  }
-
-  #header-bar {
-    @apply flex flex-col justify-center items-center space-y-5 absolute top-0 left-0
-  }
-
-  #header-bar-content {
-    @apply flex flex-col justify-center space-y-3
-  }
-} */
-
-/* Điện thoại di động lớn và máy tính bảng nhỏ (481px - 768px) */
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-
-
-}
-
-
-/* Máy tính bảng và thiết bị màn hình nhỏ (769px - 1024px) */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-
-}
-
-/* Máy tính xách tay và màn hình lớn (1025px - 1200px) */
-/* @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-
-} */
-
-/* Màn hình rộng (1201px trở lên) */
-/* @media only screen and (min-width: 1201px) {
-
-} */

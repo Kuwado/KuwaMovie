@@ -29,7 +29,7 @@ export default {
       'mb': '0px', // mobile
       'mt': '480px', // 480 - 768 minitablet
       'tl': '768px',  // 769 - 1024 tablet
-      'lt': '1024px', // laptop
+      'lt': '1025px', // laptop
       'dt': '1280px', //desktop
       // => @media (min-width: 1280px) { ... }
     },
