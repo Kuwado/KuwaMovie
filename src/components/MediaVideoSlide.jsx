@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import Carousel from 'react-multi-carousel'
 import MediaVideo from './MediaVideo';
+import { ThemeContext } from '../context/ThemeContext';
 
 const responsive = {
     desktop: {
@@ -34,9 +35,10 @@ const opts = {
 };
 
 const MediaVideoSlide = ({ videos }) => {
+    const { theme } = useContext(ThemeContext);
 
     return (
-        <div className='w-full bg-mainDark py-10'>
+        <div className={`w-full py-10 ${theme ? 'bg-mainLight' : 'bg-mainDark'}`}>
             <div className='w-10/12 mx-auto space-y-3'>
                 <h2 className='lt:text-3xl mb:text-2xl uppercase font-bold border-b-4 border-extra w-fit pb-2'>Videos</h2>
                 <Carousel responsive={responsive} infinite={false} showDots={true} className='pb-10'>

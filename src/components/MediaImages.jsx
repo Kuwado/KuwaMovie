@@ -1,5 +1,6 @@
-import React from 'react'
+import { useContext } from 'react';
 import Carousel from 'react-multi-carousel'
+import { ThemeContext } from '../context/ThemeContext';
 
 const responsive = {
   desktop: {
@@ -25,8 +26,10 @@ const responsive = {
 };
 
 const MediaImages = ({ images }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className='w-full bg-mainDark pb-10'>
+    <div className={`w-full pb-10 ${theme ? 'bg-mainLight' : 'bg-mainDark'}`}>
       <div className='w-10/12 mx-auto space-y-3'>
         <h2 className='lt:text-3xl mb:text-2xl uppercase font-bold border-b-4 border-extra w-fit pb-2'>Hình ảnh</h2>
         <Carousel responsive={responsive} infinite={false} removeArrowOnDeviceType={["tablet", "minitablet", "mobile"]} transitionDuration={500}>

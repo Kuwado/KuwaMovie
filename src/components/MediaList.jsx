@@ -1,10 +1,12 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import MediaItem from "./MediaItem";
+import { ThemeContext } from "../context/ThemeContext";
 
 const MediaList = ({ type }) => {
     const [isPopular, setIsPopular] = useState(true);
     const [page, setPage] = useState(1);
     const [medias, setMedias] = useState([]);
+    const { theme } = useContext(ThemeContext);
 
     const url = useMemo(() => (
         `https://api.themoviedb.org/3/${type}/${isPopular ? 'popular' : 'top_rated'}?language=vi&page=${page}`
@@ -50,14 +52,14 @@ const MediaList = ({ type }) => {
                 <h2 className='lt:text-3xl mb:text-2xl uppercase font-bold border-b-4 border-extra w-fit pb-2'>{title}</h2>
                 <div className="flex">
                     <button
-                        className={`py-2 px-4 rounded-tl-xl rounded-bl-xl border-2 border-white ${isPopular ? 'bg-extra font-bold' : ''}`}
+                        className={`py-2 px-4 rounded-tl-xl rounded-bl-xl border-2 ${theme ? 'border-black' : 'border-white'} ${isPopular ? 'bg-extra font-bold' : ''}`}
                         onClick={handleClick}
                         disabled={isPopular}
                     >
                         Phổ biến
                     </button>
                     <button
-                        className={`py-2 px-4 rounded-tr-xl rounded-br-xl border-2 border-white ${!isPopular ? 'bg-extra font-bold' : ''}`}
+                        className={`py-2 px-4 rounded-tr-xl rounded-br-xl border-2 ${theme ? 'border-black' : 'border-white'} ${!isPopular ? 'bg-extra font-bold' : ''}`}
                         onClick={handleClick}
                         disabled={!isPopular}
                     >

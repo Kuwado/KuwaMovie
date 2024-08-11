@@ -68,7 +68,7 @@ const MediaDetailPage = ({ type }) => {
     return (
         <>
             <div className='w-full h-[120vh] bg-center bg-no-repeat bg-cover fixed' style={{ backgroundImage: `url(${import.meta.env.VITE_IMG_URL}${media.backdrop_path})` }} />
-            <div className='absolute w-full left-0  top-0 flex flex-col text-textDark'>
+            <div className='absolute w-full left-0  top-0 flex flex-col'>
                 <MediaDetail media={media} actors={actors} type={type} />
                 <MediaVideoSlide videos={videos} />
                 <MediaImages images={images} />

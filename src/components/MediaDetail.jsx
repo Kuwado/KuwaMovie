@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { FaCaretRight } from 'react-icons/fa6';
 import Carousel from 'react-multi-carousel';
+import { ThemeContext } from '../context/ThemeContext';
 
 const responsive = {
     desktop: {
@@ -27,9 +29,10 @@ const responsive = {
 const MediaDetail = ({ media, actors, type }) => {
     const genres = media.genres || [];
     const casts = actors.cast || [];
+    const { theme } = useContext(ThemeContext);
 
     return (
-        <div className='w-full lt:h-[120vh] mb:h-fit relative bg-gradient-to-t from-mainDark via-mainDark to-textDark-0 flex items-end'>
+        <div className={`w-full lt:h-[120vh] mb:h-fit relative bg-gradient-to-t ${theme ? 'from-mainLight via-mainLight' : 'from-mainDark via-mainDark'} to-textDark-0 flex items-end`}>
             <div className='relative h-fit w-10/12 mx-auto flex lt:flex-row lt:pt-0 mb:flex-col mb:pt-[64px] items-center gap-10'>
                 <div className='w-[40%] min-w-[300px]'>
                     <img

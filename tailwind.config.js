@@ -10,7 +10,7 @@ export default {
         'mainLight': '#ffffff',
         'mainDark': '#000000',
         'extra': '#e50914',
-        'bgLight': '#',
+        'bgLight': '#f5f5f5',
         'bgDark': '#181818',
         'textLight': '#000000',
         'textDark': '#ffffff',
@@ -19,9 +19,8 @@ export default {
       },
 
       backgroundImage: {
-        'banner1': 'url(/images/banner/banner1.png)',
-
-        'bgGradient': 'linear-gradient(to right, black, rgba(0, 0, 0, 0)), linear-gradient(to top, black, rgba(0, 0, 0, 0))',
+        'bgDarkGradient': 'linear-gradient(to right, black, rgba(0, 0, 0, 0)), linear-gradient(to top, black, rgba(0, 0, 0, 0))',
+        'bgLightGradient': 'linear-gradient(to right, white, rgba(0, 0, 0, 0)), linear-gradient(to top, white, rgba(0, 0, 0, 0))',
       }
     },
 

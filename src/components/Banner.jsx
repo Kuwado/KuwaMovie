@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { FaCaretRight } from 'react-icons/fa6';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../context/ThemeContext';
 
 const responsive = {
     desktop: {
@@ -28,6 +30,7 @@ const responsive = {
 };
 
 const Banner = ({ medias, genreMovies, genreTVs }) => {
+    const { theme } = useContext(ThemeContext);
 
     return (
         <Carousel responsive={responsive} infinite={true} removeArrowOnDeviceType={["tablet", "minitablet", "mobile"]} className='lt:h-[100vh] mb:h-fit'>
@@ -41,7 +44,7 @@ const Banner = ({ medias, genreMovies, genreTVs }) => {
 
                 return (
                     <div key={media.id} className='bg-center bg-no-repeat bg-cover h-full relative cursor-grab' style={{ backgroundImage: `url(${import.meta.env.VITE_IMG_URL}${media.backdrop_path})` }}>
-                        <div className='w-full h-full absolute top-0 left-0 bg-bgGradient' />
+                        <div className={`w-full h-full absolute top-0 left-0 ${theme ? 'bg-bgLightGradient' : 'bg-bgDarkGradient'}`} />
                         <div className='w-10/12 h-full mx-auto top-0 z-20 relative flex items-center justify-center gap-5 lt:flex-row mb:flex-col-reverse'>
                             <div className='lt:w-1/2 mb:w-full flex flex-col justify-center gap-5 mb:items-center lt:items-start'>
                                 <h2 className='lt:text-[60px] lt:leading-[68px] mb:text-[52px] mb:leading-[60px] font-bold text-wrap break-words h-fit'>{media.title || media.original_title || media.original_name}</h2>
