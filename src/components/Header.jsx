@@ -5,6 +5,7 @@ import { MenuContext } from "../context/MenuContext";
 
 const Header = () => {
     const [scrollHeader, setScrollHeader] = useState(false);
+    const [search, setSearch] = useState("");
     const { menuOpen, toggleMenu } = useContext(MenuContext);
     const menuRef = useRef();
     const overlayRef = useRef();
@@ -23,6 +24,7 @@ const Header = () => {
         window.scrollTo(0, 0);
         if (menuOpen) {
             toggleMenu();
+            setSearch('');
         }
     }, [location]);
 
@@ -65,8 +67,8 @@ const Header = () => {
 
             <div className="flex gap-5">
                 <div className="px-2 py-1 rounded-tl-xl rounded-br-xl border-solid border-textDark border space-x-2 flex items-center">
-                    <input className="bg-transparent border-none outline-none p-1" type="text" placeholder="Bạn muốn tìm gì?" />
-                    <button className="text-xl hover:text-extra"><FaMagnifyingGlass /></button>
+                    <input className="bg-transparent border-none outline-none p-1" type="text" placeholder="Bạn muốn tìm gì?" value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <Link to={`/search/${search}`} className="text-xl hover:text-extra"><FaMagnifyingGlass /></Link>
                 </div>
                 <a href="" className="lt:flex mb:hidden small-btn main-btn">Đăng nhập</a>
             </div>
