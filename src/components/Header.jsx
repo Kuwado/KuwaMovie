@@ -48,7 +48,7 @@ const Header = () => {
     }, [menuOpen]);
 
     return (
-        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-50 transition-colors duration-300 ${scrollHeader ? (theme ? 'bg-bgLight' : 'bg-bgDark' ) : 'bg-transparent'}`}>
+        <div className={`flex items-center justify-between fixed w-full h-16 px-8 z-50 transition-colors duration-300 ${scrollHeader ? (theme ? 'bg-bgLight' : 'bg-bgDark') : 'bg-transparent'}`}>
             <div className={`absolute top-0 left-0 right-0 h-[100vh] z-60 bg-mainDark/30 ${menuOpen ? 'block' : 'hidden'}`} ref={overlayRef}></div>
             <button className="lt:hidden mb:flex text-xl hover:text-extra" onClick={toggleMenu}><FaBars /></button>
             <div ref={menuRef} className={`lt:hidden mb:flex flex-col items-center h-screen space-y-5 p-5 absolute z-90 top-0 bg-bgDark transition-all ease-in-out duration-300 ${menuOpen ? 'left-0' : '-left-full'}`}>
@@ -56,7 +56,7 @@ const Header = () => {
                 <Link to={'/'} className={`header-item ${location.pathname === '/' ? 'active' : ''}`}>Trang chủ</Link>
                 <Link to={'/movies'} className={`header-item ${location.pathname === '/movies' ? 'active' : ''}`}>Phim lẻ</Link>
                 <Link to={'/tvs'} className={`header-item ${location.pathname === '/tvs' ? 'active' : ''}`}>Phim bộ</Link>
-                <button className="" onClick={toggleTheme}>Sáng/Tối</button>
+                <button className={`header-item ${theme ? 'bg-mainLight' : 'bg-mainDark'}`} onClick={toggleTheme}>Sáng/Tối</button>
             </div>
 
             <div className="lt:flex mb:hidden items-center space-x-5" id="header-bar">
